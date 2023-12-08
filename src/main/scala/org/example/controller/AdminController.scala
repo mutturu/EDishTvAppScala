@@ -26,13 +26,15 @@ class AdminController {
 
   }
 
-  def updateAnExistingTvChannel(channeid:Int): Unit = {
-    userDatabase.updateAnExistingTvChannelQuery(channeid)
+  def updateAnExistingTvChannel(channeid:Int): String = {
+    var k=userDatabase.updateAnExistingTvChannelQuery(channeid)
     println("update An Existing Tv Channel")
+    k
   }
 
-  def ListAllTvChannels(): Unit = {
+  def ListAllTvChannels(): Boolean = {
     userDatabase.ListAllTvChannelsQuery()
+    true
   }
 
 

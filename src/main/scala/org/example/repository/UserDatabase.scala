@@ -1,7 +1,5 @@
 package org.example.repository
-import org.apache.log4j.{BasicConfigurator, LogManager}
 import org.example.ETvDishAppMain
-import org.example.ETvDishAppMain.getClass
 import org.example.model.User
 import org.example.model.Channel
 
@@ -10,8 +8,8 @@ import java.sql.{Connection, Date, DriverManager, PreparedStatement, ResultSet, 
 
 
 class UserDatabase {
-  var connection: Connection = _
-  var logger=ETvDishAppMain.logger
+  private var connection: Connection = _
+  private var logger=ETvDishAppMain.logger
 
   val url = "jdbc:mysql://localhost:3306/eDishTvApp"
   val driver = "com.mysql.cj.jdbc.Driver"
@@ -46,7 +44,7 @@ class UserDatabase {
       statement.executeUpdate(query)
       //create billings table
       statement = connection.createStatement()
-      query = s"create table  if not exists billings(billingid int primary key auto_increment ,userid int not null unique, currentBalance int unsigned,expiryDate date,sumOfChannels int,expireDays int);"
+      query = s"create table  if not exists billings(billingid int primary key auto_increment ,userid int not null unique, currentBalance int unsigned,expiryDate date,sumOfChannels int,expireDays int,startDate date);"
       statement.executeUpdate(query)
       true
     }
@@ -177,10 +175,10 @@ class UserDatabase {
   def addANewTvChannelQuery(channel: Channel): String = {
     try {
       val statement = connection.createStatement()
-      val query = s"INSERT INTO CHANNELS(tvChannelName,monthlySubscriptionFee,language,description) VALUES ('${channel.tvChannelName}', '${channel.monthlySubscriptionFee}','${channel.tvChannelName}','${channel.description}');"
+      val query = s"INSERT INTO CHANNELS(tvChannelName,monthlySubscriptionFee,language,description) VALUES ('${channel.tvChannelName}', '${channel.monthlySubscriptionFee}','${channel.language}','${channel.description}');"
       val channelcount: Int = statement.executeUpdate(query)
 
-      "Added Tv Channel Successfully,"
+      "Added Tv Channel Successfully!"
     }
 
     catch {
@@ -191,7 +189,8 @@ class UserDatabase {
     }
   }
 
-  def ListAllTvChannelsQuery(): Unit = {
+  def ListAllTvChannelsQuery(): Boolean = {
+    var k=false
     try {
       val statement = connection.createStatement()
       val resultSet = statement.executeQuery("SELECT * FROM channels")
@@ -203,21 +202,27 @@ class UserDatabase {
         val descrip=resultSet.getString("description")
         println(s"ChannelId:$channelid,Channel Name:$tvChannelName,Language:$language,Montly Subscription Fee:$montlysubscription,Description:$descrip")
       }
+      k=true
+      k
     }
 
     catch {
       case e: Exception => logger.error(e.printStackTrace)
+        k
     }
 
   }
 
-  def updateAnExistingTvChannelQuery(channelid: Int): Unit = {
+  def updateAnExistingTvChannelQuery(channelid: Int): String = {
+    var k=""
     try {
       val statement = connection.createStatement()
 
       var query = s"SELECT * FROM channels WHERE channelid=$channelid"
       val resultSet = statement.executeQuery(query)
-      if (!resultSet.next()) println("No channel Exist with given channelId")
+      if (!resultSet.next()) {logger.info("No channel Exist with given channelId")
+        k="No channel Exist with given channelId"
+      }
       else {
         logger.info("Enter Tv Channel Name:")
         var tvChannelName = StdIn.readLine()
@@ -230,10 +235,13 @@ class UserDatabase {
         query = s"UPDATE channels SET tvChannelName='$tvChannelName',monthlySubscriptionFee=$monthlySubscriptionFee,language='$language',description='$description' WHERE channelid=$channelid;"
         statement.executeUpdate(query)
         logger.info("updated successfully")
+        k="updated successfully"
       }
+      k
     }
     catch {
       case e: Exception => logger.error(e.printStackTrace())
+        "Error"
     }
 
   }
@@ -312,7 +320,8 @@ class UserDatabase {
 
   }
 
-  def unSubscribeTvChannelQuery(username: String, channelid: Int): Unit = {
+  def unSubscribeTvChannelQuery(username: String, channelid: Int): Boolean = {
+    var kk=false
     try {
       var userid = 0
       try {
@@ -325,6 +334,7 @@ class UserDatabase {
       }
       catch {
         case e: Exception =>logger.error(e.printStackTrace)
+          kk
 
 
       }
@@ -343,21 +353,26 @@ class UserDatabase {
             if(com>0)
               {
                 logger.info("Unsubscribed to Tv Channel Id+"+channelid)
+                kk=true
               }
 
 
           }
 
       }
+      kk
+
     }
     catch {
       case e: Exception => logger.error(e.printStackTrace)
+        false
 
     }
 
   }
 
-  def viewSubscriptionDetailsQuery(username: String): Unit = {
+  def viewSubscriptionDetailsQuery(username: String): Boolean = {
+    var k=false
     try {
       var userid = 0
       var montlyfee=0
@@ -365,6 +380,7 @@ class UserDatabase {
       var expiremonths=0
       var expirydate:Date=null
       var expiredaysfinal=0
+      var startDate:Date=null
       try {
         val statement = connection.createStatement()
         val query1 = s"SELECT * FROM users WHERE emailId='$username'"
@@ -413,7 +429,7 @@ class UserDatabase {
       try {
         expiredays=expiremonths*30
         statement = connection.createStatement()
-        query = s"update billings set sumOfChannels=$montlyfee,expiryDate=date(date_add(now(),interval $expiredays day)),expireDays=$expiredays where userid=$userid;"
+        query = s"update billings set sumOfChannels=$montlyfee,expiryDate=date(date_add(now(),interval $expiredays day)),expireDays=$expiredays,startDate=curdate() where userid=$userid;"
         val k:Int= statement.executeUpdate(query)
       }
       catch {
@@ -430,25 +446,30 @@ class UserDatabase {
           expirydate=resultSet.getDate("expiryDate")
           expiredaysfinal=resultSet.getInt("expireDays")
           totalchannelprice=resultSet.getInt("sumOfChannels")
+          startDate=resultSet.getDate("startDate")
 
 
         }
-        logger.info(s"Current Balance Amount:$currentamount,All Subscribed channel price:$totalchannelprice, Expiry Date:$expirydate, Expire in $expiredaysfinal days,Expire in $expiremonths months!")
-
+        logger.info(s"Current Balance Amount:$currentamount,All Subscribed channel price:$totalchannelprice,start Date:$startDate, Expiry Date:$expirydate, Expire in $expiredaysfinal days,Expire in $expiremonths months!")
+        k=true
+        k
         }
       catch {
         case e: Exception => logger.error(e.printStackTrace)
+          k
 
       }
     }
     catch {
       case e: Exception => logger.error(e.printStackTrace)
+        k
 
     }
 
 
   }
-  def addBalanceToWalletQuery(username:String,money:Int): Unit = {
+  def addBalanceToWalletQuery(username:String,money:Int): Boolean = {
+    var k=false
     try {
       var userid: Int = 0
       var oldBalance: Int = 0
@@ -468,6 +489,7 @@ class UserDatabase {
           if(co>=0)
             {
               logger.info(s"Added Money:$money to the wallet Successfully!\nCurrent Balance=$money")
+              k=true
             }
 
 
@@ -483,19 +505,22 @@ class UserDatabase {
           val co = statement.executeUpdate(query)
           if (co >0) {
             logger.info(s"Added Money:$money to the wallet Successfully!\nCurrent Balance=$newbalance")
+            k=true
           }
         }
 
-
+      k
       }
       catch {
         case e: Exception => logger.error(e.printStackTrace)
+          k
       }
     }
 
       catch
       {
         case e: Exception => logger.error(e.printStackTrace)
+          k
       }
     }
 

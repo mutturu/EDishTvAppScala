@@ -5,27 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83a74d8e-1819-4dd4-a81d-df87d74b1edb" name="Changes" comment="EDishTvApp using Scala and Maven.">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/example/ETvDishAppMain.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/example/controller/AdminController.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/example/controller/UserController.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/example/model/Channel.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/example/model/Subscription.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/example/model/User.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/org/example/repository/UserDatabase.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/AdminControllerTest.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/SimpleTestSuite.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/scala/UserControllerTest.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/AdminControllerScalaTest.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/UserControllerScalaTest.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/scala/UserDatabaseScalaTest.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/example/ETvDishAppMain.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/example/ETvDishAppMain.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/example/controller/AdminController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/example/controller/AdminController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/example/controller/UserController.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/example/controller/UserController.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/org/example/repository/UserDatabase.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/org/example/repository/UserDatabase.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/AdminControllerTest.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/SimpleTestSuite.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/SimpleTestSuite.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/UserControllerTest.scala" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +24,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/scala/org/example/repository/UserDatabase.scala" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -49,17 +42,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.ETvDishAppMain">
+}</component>
+  <component name="RunManager" selected="ScalaTest.ScalaTests in 'scala'">
     <configuration name="ETvDishAppMain" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="org.example.ETvDishAppMain" />
       <module name="eTvDishApp" />
@@ -73,52 +66,72 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AdminControllerScalaTest" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="eTvDishApp" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UserControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Class" />
+      <option name="testClassPath" value="AdminControllerScalaTest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest.registerUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ScalaTests in 'scala'" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="eTvDishApp" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UserControllerTest" />
-      <option name="METHOD_NAME" value="registerUser" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="All in package" />
+      <option name="classBuf">
+        <list>
+          <option value="SimpleTestSuite" />
+          <option value="UserDatabaseScalaTest" />
+          <option value="UserControllerScalaTest" />
+          <option value="AdminControllerScalaTest" />
+        </list>
+      </option>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest.userLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserControllerScalaTest" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="eTvDishApp" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UserControllerTest" />
-      <option name="METHOD_NAME" value="userLogin" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Class" />
+      <option name="testClassPath" value="UserControllerScalaTest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserControllerTest.userLoginFalse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserDatabaseScalaTest" type="ScalaTestRunConfiguration" factoryName="ScalaTest" temporary="true" nameIsGenerated="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="eTvDishApp" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="UserControllerTest" />
-      <option name="METHOD_NAME" value="userLoginFalse" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="allowRunningInParallel" value="false" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="testKind" value="Class" />
+      <option name="testClassPath" value="UserDatabaseScalaTest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="ScalaTest.ScalaTests in 'scala'" />
+        <item itemvalue="ScalaTest.AdminControllerScalaTest" />
         <item itemvalue="Application.ETvDishAppMain" />
-        <item itemvalue="JUnit.UserControllerTest.userLoginFalse" />
-        <item itemvalue="JUnit.UserControllerTest.userLogin" />
-        <item itemvalue="JUnit.UserControllerTest" />
-        <item itemvalue="JUnit.UserControllerTest.registerUser" />
+        <item itemvalue="ScalaTest.UserDatabaseScalaTest" />
+        <item itemvalue="ScalaTest.UserControllerScalaTest" />
       </list>
     </recent_temporary>
   </component>
@@ -131,6 +144,15 @@
       <option name="presentableId" value="Default" />
       <updated>1701181052818</updated>
     </task>
+    <task id="LOCAL-00001" summary="EDishTvApp using Scala and Maven.">
+      <option name="closed" value="true" />
+      <created>1701838680230</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701838680230</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -161,13 +183,21 @@
           <line>963</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/test/scala/UserControllerScalaTest.scala</url>
+          <line>5</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/eTvDishApp$ScalaTests_in__scala_.ic" NAME="ScalaTests in 'scala' Coverage Results" MODIFIED="1702045715302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/eTvDishApp$ETvDishAppMain.ic" NAME="ETvDishAppMain Coverage Results" MODIFIED="1701580407164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>org.example.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/eTvDishApp$UserControllerTest.ic" NAME="UserControllerTest Coverage Results" MODIFIED="1701665468088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/eTvDishApp$UserControllerScalaTest.ic" NAME="UserControllerScalaTest Coverage Results" MODIFIED="1702042120743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/eTvDishApp$AdminControllerScalaTest.ic" NAME="AdminControllerScalaTest Coverage Results" MODIFIED="1702043150821" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

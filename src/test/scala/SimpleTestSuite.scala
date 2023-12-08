@@ -6,5 +6,9 @@ class SimpleTestSuite extends AnyFunSuite {
     println("hello")
     assert(true)
   }
+  test("This is ")
+  {
+    assertResult(true)(true)
+  }
 
 }

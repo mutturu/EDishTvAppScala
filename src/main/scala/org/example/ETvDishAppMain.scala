@@ -34,7 +34,7 @@ object ETvDishAppMain {
           case 4 => viewAllExistingTvchannels()
           case 5 => forgetPassword()
           case 6 => exit = true
-          case _ => println("Invalid Option")
+          case _ => logger.info("Invalid Option")
         }
       }
       userController.closeConnectionToJdbc()
@@ -132,15 +132,18 @@ object ETvDishAppMain {
     def updateAnExistingTvChannel(): Unit = {
       println("Enter ChannelId which to be Updated:")
       var k = StdIn.readInt()
-
-      adminController.updateAnExistingTvChannel(k)
+      val d=adminController.updateAnExistingTvChannel(k)
 
 
     }
 
     def ListAllTvChannels(): Unit = {
-      adminController.ListAllTvChannels()
+      if (adminController.ListAllTvChannels()) {
       logger.info("All Existing Tv Channels Displayed Sucessfully")
+    }
+      else {
+        logger.warn("Invalid Details!")
+      }
     }
 
     //User Related Methods
@@ -182,18 +185,20 @@ object ETvDishAppMain {
     def subscribeTvChannel(username: String): Unit = {
       logger.info("Enter Channelid to subscribe:")
       var channeid = StdIn.readInt()
-      userController.subscribeTvChannel(username, channeid)
+      val k=userController.subscribeTvChannel(username, channeid)
+      logger.info(k)
     }
 
     def unSubscribeTvChannel(username: String): Unit = {
       logger.info("Enter channelid which to do be unscribe:")
       var channelid = StdIn.readInt()
-      userController.unSubscribeTvChannel(username, channelid)
-      logger.info("UnSubscribe to a Tv Channel")
+      var k=userController.unSubscribeTvChannel(username, channelid)
+      logger.info(k)
     }
 
     def viewSubscriptionDetails(username: String): Unit = {
-      userController.viewSubscriptionDetails(username)
+      val k=userController.viewSubscriptionDetails(username)
+      logger.info(k)
 
     }
 
@@ -201,7 +206,7 @@ object ETvDishAppMain {
       logger.info("Add Money to the wallet:")
       var money = StdIn.readInt()
       if (money >= 0) {
-        userController.addBalanceToWallet(username, money)
+        val k=userController.addBalanceToWallet(username, money)
       }
       else {
         logger.warn("enter amount is more than 0")

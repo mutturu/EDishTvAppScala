@@ -33,22 +33,40 @@ class UserController {
 
 
   }
-  def subscribeTvChannel(username:String,channelid:Int): Unit = {
+  def subscribeTvChannel(username:String,channelid:Int): String = {
     var k=userDatabase.subscribeTvChannelQuery(username,channelid)
-    println(k)
+    k
   }
 
-  def unSubscribeTvChannel(username:String,channelid:Int): Unit = {
-    userDatabase.unSubscribeTvChannelQuery(username, channelid)
-    println("UnSubscribe to a Tv Channel")
+  def unSubscribeTvChannel(username:String,channelid:Int): String = {
+    if(userDatabase.unSubscribeTvChannelQuery(username, channelid))
+      {
+        "UnSubscribed Tv Channel Successfully!"
+      }
+    else
+      {
+        "Failed To UnSubsribe tv Channel!"
+      }
+
   }
 
-  def viewSubscriptionDetails(username:String): Unit = {
-    userDatabase.viewSubscriptionDetailsQuery(username)
-    println("view Subscription Details")
+  def viewSubscriptionDetails(username:String): String = {
+    if(userDatabase.viewSubscriptionDetailsQuery(username)) {
+      "Displayed Subscription Details Sucessfully"
+    }
+    else{
+      "Failed to Fetch Subscription Details"
+    }
   }
-  def addBalanceToWallet(username:String,money:Int): Unit = {
-    userDatabase.addBalanceToWalletQuery(username,money)
+  def addBalanceToWallet(username:String,money:Int): Boolean = {
+    if(userDatabase.addBalanceToWalletQuery(username,money))
+      {
+        true
+      }
+    else
+      {
+        false
+      }
   }
 
 
